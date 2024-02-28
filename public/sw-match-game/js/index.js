@@ -24,7 +24,7 @@ function sendMessage(message) {
 ///==========================
 
 let timerInterval
-let playTime = 5 // => 0.5 = 30s
+let playTime = 2 // => 0.5 = 30s
 let endGame = false
 const gameElement = document.querySelector('#flip-card-game')
 
