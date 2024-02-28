@@ -1,0 +1,1 @@
+export {default as APP_ROUTER} from './app-router'
