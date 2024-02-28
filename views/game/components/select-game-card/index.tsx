@@ -1,6 +1,6 @@
 import { FallbackImage } from '@/views/components/fallback-image'
 import Link from 'next/link'
-
+import './style.css'
 interface ISelectGameCardProps {
 	image: string
 	title: string
@@ -10,7 +10,7 @@ interface ISelectGameCardProps {
 
 const SelectGameCard = ({ image, title, description, url }: ISelectGameCardProps) => {
 	return (
-		<Link href={url} className="flex flex-col md:flex-row gap-3 w-full p-2 border shadow-md rounded-md">
+		<Link href={url} className="game-card-selection">
 			<FallbackImage
 				className="object-cover m-auto w-20 h-20 rounded-md flex-shrink-0"
 				src={image}
