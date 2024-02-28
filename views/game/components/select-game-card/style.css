@@ -1,0 +1,7 @@
+.game-card-selection {
+  @apply flex flex-col md:flex-row gap-3 w-full p-2 border shadow-md rounded-md;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(9.6px);
+  -webkit-backdrop-filter: blur(9.6px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
