@@ -35,7 +35,7 @@ function GamePageView() {
 			<div className="grid grid-cols-12 gap-3">
 				{gameList.map((item) => {
 					return (
-            <div className="col-span-6" key={item.id}>
+            <div className="col-span-6 min-[780px]:col-span-3" key={item.id}>
               <SelectGameCard
                 image={item.image}
                 title={item.title}
