@@ -9,7 +9,7 @@ const defaults = {
 	colors: ['FFE400', 'FFBD00', 'E89400', 'FFCA6C', 'FDFFB8'],
 }
 
-export function shootConfetties() {
+function shootConfetties() {
 	confetti({
 		...defaults,
 		particleCount: 40,
@@ -32,7 +32,14 @@ export function shootConfetties() {
 	})
 }
 
+function confettiSoundPlay() {
+	const confettiSoundEl = document.getElementById('confetti-sound')
+	confettiSoundEl?.play()
+}
+
 // usage
 // setTimeout(shootConfetties, 0);
 // setTimeout(shootConfetties, 100);
 // setTimeout(shootConfetties, 200);
+
+export { confettiSoundPlay, shootConfetties }

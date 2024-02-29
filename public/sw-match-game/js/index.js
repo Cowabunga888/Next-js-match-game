@@ -1,17 +1,20 @@
-import { winningModalCotent, losingModalCotent } from './modal.js'
-import { shootConfetties } from './confetti.js'
+import { confettiSoundPlay, shootConfetties } from './confetti.js'
+import { losingModalCotent, winningModalCotent } from './modal.js'
 
 const winningContent = winningModalCotent()
 const losingContent = losingModalCotent()
 
 let initImageListData = null
-
+let selectCardElSound = null
+const confettiSound = './assets/sound/confetties_sound.mp3'
+const selectCardSound = './assets/sound/select_sound.mp3'
 // You can use the data returned by these functions as needed.
 
 ///=========================
 ///Next js - index.js comunicator
 document.addEventListener('DOMContentLoaded', () => {
 	console.log('DOMContentLoaded')
+	initSound()
 
 	const onMessageListener = (event) => {
 		if (event?.data?.messageType === 'NEXT_JS_MESSAGE') {
@@ -38,22 +41,22 @@ const emojis = [
 	'🍕',
 	'🍔',
 	'🍔',
-	'🍖',
-	'🍖',
-	'🍧',
-	'🍧',
-	'🍩',
-	'🍩',
-	'🎄',
-	'🎄',
-	'🎃',
-	'🎃',
-	'💎',
-	'💎',
-	'⏰',
-	'⏰',
-	'🚀',
-	'🚀',
+	// '🍖',
+	// '🍖',
+	// '🍧',
+	// '🍧',
+	// '🍩',
+	// '🍩',
+	// '🎄',
+	// '🎄',
+	// '🎃',
+	// '🎃',
+	// '💎',
+	// '💎',
+	// '⏰',
+	// '⏰',
+	// '🚀',
+	// '🚀',
 ]
 
 const initGame = () => {
@@ -90,6 +93,11 @@ const initGame = () => {
 
 		card.onclick = () => {
 			if (endGame) return
+
+			if (selectCardElSound) {
+				selectCardElSound?.play()
+			}
+
 			// close card if double clicked
 			if (card.classList.value.includes('card--opened')) {
 				card.classList.remove('card--opened')
@@ -134,6 +142,7 @@ const initGame = () => {
 const onWinning = () => {
 	endGame = true
 	setTimeout(shootConfetties, 100)
+	confettiSoundPlay()
 	setTimeout(() => {
 		// alert('You Win')
 		console.log(winningContent)
@@ -191,6 +200,15 @@ const initTimer = (defaultMinutes) => {
 	// Update the timer every second
 	clearInterval(timerInterval)
 	timerInterval = setInterval(updateTimer, 1000)
+}
+
+const initSound = () => {
+	document.getElementById('sound-container').innerHTML = `
+	<audio src="${confettiSound}" id="confetti-sound" type="audio/mpeg" ></audio>
+	<audio src="${selectCardSound}" id="select-card-sound" type="audio/mpeg" ></audio>
+	`
+
+	selectCardElSound = document.getElementById('select-card-sound')
 }
 
 // initGame()
