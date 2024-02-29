@@ -13,7 +13,7 @@ interface IFallbackImage {
 }
 
 export const FallbackImage = ({ fallback, alt, src, className, width, height, ...props }: IFallbackImage) => {
-	const FallBackImgUrl = fallback ?? '/assests/images/fallback.webp'
+	const FallBackImgUrl = fallback ?? '/assets/images/fallback.webp'
 
 	const [error, setError] = useState(false)
 
