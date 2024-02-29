@@ -1,4 +1,5 @@
-import { Button } from '@mantine/core'
+import { Button, Modal } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
 import React, { useEffect } from 'react'
 
 interface IGameComunicator {
@@ -10,14 +11,27 @@ interface IMESSAGE {
 	modalType?: string
 	data: {
 		message: string
+		imageList: { img: string }[]
 	}
 }
 
 function GameComunicator({ children }: Readonly<IGameComunicator>) {
+	const [opened, { open, close }] = useDisclosure(true)
+
 	const data: IMESSAGE = {
 		messageType: 'NEXT_JS_MESSAGE',
 		data: {
 			message: 'Next js -> index.js',
+			imageList: [
+				{ img: '🐱' },
+				{ img: '🐺' },
+				{ img: '🦝' },
+				{ img: '🐲' },
+				{ img: '🐱' },
+				{ img: '🐺' },
+				{ img: '🦝' },
+				{ img: '🐲' },
+			],
 		},
 	}
 
@@ -43,18 +57,32 @@ function GameComunicator({ children }: Readonly<IGameComunicator>) {
 
 	return (
 		<>
-			<div className="absolute top-0 left-0">
-				<Button
-					className=""
-					onClick={() => {
-						sendMessage(data)
-					}}
-				>
-					SendMessage
-				</Button>
-			</div>
-
 			{children}
+
+			<Modal
+				opened={opened}
+				onClose={() => {}}
+				centered
+				withCloseButton={false}
+				overlayProps={{
+					backgroundOpacity: 0.55,
+					blur: 3,
+				}}
+			>
+				<div className="w-full h-[300px] border border-dashed flex items-center justify-center">
+					<Button
+						className=""
+						onClick={() => {
+							sendMessage(data)
+							close()
+						}}
+						color="lime"
+						variant="outline"
+					>
+						Start Game
+					</Button>
+				</div>
+			</Modal>
 		</>
 	)
 }

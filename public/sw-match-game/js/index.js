@@ -1,6 +1,10 @@
 import { winningModalCotent, losingModalCotent } from './modal.js'
+import { shootConfetties } from './confetti.js'
+
 const winningContent = winningModalCotent()
 const losingContent = losingModalCotent()
+
+let initImageListData = null
 
 // You can use the data returned by these functions as needed.
 
@@ -12,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	const onMessageListener = (event) => {
 		if (event?.data?.messageType === 'NEXT_JS_MESSAGE') {
 			console.log('index js log: ', event?.data)
+			initImageListData = event?.data?.data?.imageList?.map((item) => item?.img)
+			initGame()
 		}
 	}
 
@@ -22,7 +28,6 @@ function sendMessage(message) {
 	return window.parent.postMessage(message)
 }
 ///==========================
-
 let timerInterval
 let playTime = 2 // => 0.5 = 30s
 let endGame = false
@@ -52,16 +57,17 @@ const emojis = [
 ]
 
 const initGame = () => {
+	let ImageListData = initImageListData?.length > 0 ? initImageListData : emojis
 	gameElement.innerHTML = ''
 	document.querySelector('#reset-btn').addEventListener('click', restartGame)
 
-	let shuf_emojis = emojis.toSorted(() => {
+	let shuf_images = ImageListData.toSorted(() => {
 		//create a random number from 0 to 1.
 		//if number more than 0.5, this func return 2, else -1
 		return Math.random() > 0.5 ? 2 : -1
 	})
 
-	return emojis.map((_, i) => {
+	return ImageListData.map((_, i) => {
 		let card = document.createElement('div')
 		let cardInner = document.createElement('div')
 		let cardFront = document.createElement('div')
@@ -78,7 +84,7 @@ const initGame = () => {
 		cardInner.appendChild(cardBack)
 
 		cardFront.innerHTML = '🎈'
-		cardBack.innerHTML = shuf_emojis[i]
+		cardBack.innerHTML = shuf_images[i]
 
 		card.setAttribute('id', 'card_no.' + i)
 
@@ -105,7 +111,7 @@ const initGame = () => {
 						opendItems[0].classList.remove('card--opened')
 						opendItems[1].classList.remove('card--opened')
 
-						if (document.querySelectorAll('.card--match')?.length === emojis.length) {
+						if (document.querySelectorAll('.card--match')?.length === ImageListData.length) {
 							onWinning()
 						}
 					} else {
@@ -117,7 +123,7 @@ const initGame = () => {
 		}
 
 		gameElement.appendChild(card)
-		if (i === emojis.length - 1) {
+		if (i === ImageListData.length - 1) {
 			setTimeout(() => {
 				initTimer(playTime)
 			}, 2000)
@@ -127,6 +133,7 @@ const initGame = () => {
 }
 const onWinning = () => {
 	endGame = true
+	setTimeout(shootConfetties, 100)
 	setTimeout(() => {
 		// alert('You Win')
 		console.log(winningContent)
@@ -186,4 +193,4 @@ const initTimer = (defaultMinutes) => {
 	timerInterval = setInterval(updateTimer, 1000)
 }
 
-initGame()
+// initGame()

@@ -11,7 +11,7 @@ export default function NotFound() {
 		<div
 			className={
 				JetBrains.className +
-				' w-screen h-screen flex flex-col justify-center gap-5 text-center bg-[url("/assests/game/images/404_bg.webp")] bg-center bg-no-repeat bg-cover'
+				' w-screen h-screen flex flex-col justify-center gap-5 text-center bg-[url("/assets/game/images/404_bg.webp")] bg-center bg-no-repeat bg-cover'
 			}
 		>
 			<div>

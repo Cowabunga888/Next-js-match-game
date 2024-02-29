@@ -7,7 +7,7 @@ const winningModalCotent = ()=> ({
 })
 const losingModalCotent = ()=>({
   messageType: 'INDEX_JS_MESSAGE',
-  modalType: 'WIN',
+  modalType: 'LOSE',
   data: {
     message: 'You lose ಥ_ಥ'
   }
