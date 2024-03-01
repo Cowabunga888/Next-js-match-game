@@ -11,7 +11,11 @@ interface IMESSAGE {
 	modalType?: string
 	data: {
 		message: string
-		imageList: { img: string }[]
+		col: number
+		row: number
+		cel: number
+		logo: string
+		images: string[]
 	}
 }
 
@@ -22,15 +26,21 @@ function GameComunicator({ children }: Readonly<IGameComunicator>) {
 		messageType: 'NEXT_JS_MESSAGE',
 		data: {
 			message: 'Next js -> index.js',
-			imageList: [
-				{ img: '🐱' },
-				{ img: '🐺' },
-				{ img: '🦝' },
-				{ img: '🐲' },
-				{ img: '🐱' },
-				{ img: '🐺' },
-				{ img: '🦝' },
-				{ img: '🐲' },
+			col: 5,
+			row: 4,
+			cel: 20,
+			logo: 'https://i.postimg.cc/V64z86jz/logo.png',
+			images: [
+				'https://cdn-icons-png.flaticon.com/256/14699/14699677.png',
+				'https://cdn-icons-png.flaticon.com/256/14699/14699686.png',
+				'https://cdn-icons-png.flaticon.com/256/14699/14699678.png',
+				'https://cdn-icons-png.flaticon.com/256/14699/14699692.png',
+				'https://cdn-icons-png.flaticon.com/256/14699/14699684.png',
+				'https://cdn-icons-png.flaticon.com/256/14699/14699695.png',
+				'https://cdn-icons-png.flaticon.com/256/15054/15054885.png',
+				'https://cdn-icons-png.flaticon.com/256/8548/8548875.png',
+				'https://cdn-icons-png.flaticon.com/256/14477/14477421.png',
+				'https://cdn-icons-png.flaticon.com/256/15135/15135842.png',
 			],
 		},
 	}

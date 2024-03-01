@@ -6,6 +6,7 @@ export default Object.freeze({
   },
   game: {
     path: '/game',
-    matchGame: '/game/' + GAME_NAME.MATCH_GAME
+    matchGameV1: '/game/' + GAME_NAME.MATCH_GAME_V1,
+    matchGameV2: '/game/' + GAME_NAME.MATCH_GAME_V2,
   }
 })
