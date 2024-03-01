@@ -11,12 +11,13 @@
 body {
     height: 100vh;
     position: relative;
+    margin: auto;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #0A3C2F;
+    background-color: #CF944F;
 
     font-family: "Tilt Neon", sans-serif;
     font-optical-sizing: auto;
@@ -29,8 +30,8 @@ body {
 
 .container {
     width: 100vw;
-    padding: 10px;
-    background-color: #0D614B;
+    padding: 10px 0;
+    background-color: #FFD999;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -65,11 +66,10 @@ h2 {
 
 #flip-card-game {
     padding: 10px;
-
+    max-width: 100%;
+    
     display: grid;
-    grid-template-columns: repeat(5, max(50px));
-    grid-auto-flow: 50px;
-    grid-template-rows: repeat(5, 50px);
+    grid-template-columns: repeat(5, min(50px));
     gap: 10px;
 
     border: 1px solid #FFFFFF;

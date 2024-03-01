@@ -41,18 +41,18 @@ let NextJsFakeData = {
 document.addEventListener('DOMContentLoaded', () => {
 	console.log('DOMContentLoaded')
 	//// dev initial data
-	initImageListData = NextJsFakeData?.data?.images?.flatMap((item) => [item, item])
-	originInitData = NextJsFakeData?.data
-	initGame()
+	// initImageListData = NextJsFakeData?.data?.images?.flatMap((item) => [item, item])
+	// originInitData = NextJsFakeData
+	// initGame()
 	initSound()
 
 	const onMessageListener = (event) => {
 		if (event?.data?.messageType === 'NEXT_JS_MESSAGE') {
 			console.log('index js log: ', event?.data)
 			//// Next js init data here
-			// originInitData = event?.data
-			// initImageListData = originInitData?.data?.images?.flatMap((item) => [item, item])
-			// initGame()
+			originInitData = event?.data
+			initImageListData = originInitData?.data?.images?.flatMap((item) => [item, item])
+			initGame()
 		}
 	}
 
@@ -122,7 +122,7 @@ const initGame = () => {
 		cardInner.appendChild(cardFront)
 		cardInner.appendChild(cardBack)
 
-		cardFront.setAttribute('src', originInitData?.logo)
+		cardFront.setAttribute('src', originInitData?.data?.logo)
 		cardFront.setAttribute('alt', 'logo-img')
 
 		card.setAttribute('id', 'card_no.' + i)

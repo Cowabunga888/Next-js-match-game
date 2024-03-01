@@ -4,22 +4,54 @@ import { losingModalCotent, winningModalCotent } from './modal.js'
 const winningContent = winningModalCotent()
 const losingContent = losingModalCotent()
 
+let originInitData = null
 let initImageListData = null
 let selectCardElSound = null
 const confettiSound = './assets/sound/confetties_sound.mp3'
 const selectCardSound = './assets/sound/select_sound.mp3'
+
+let NextJsFakeData = {
+	// 3x2: 03 url | 3x4: 06 url
+	// 4x4: 08 url | 4x3: 06 url | 4x5: 10 url
+	// 5x4: 10 url | 5x6: 15 url
+	// 6x5: 15 url
+	data: {
+		col: 5,
+		row: 4,
+		cel: 20,
+		logo: 'https://i.postimg.cc/V64z86jz/logo.png',
+		images: [
+			'https://cdn-icons-png.flaticon.com/256/14699/14699677.png',
+			'https://cdn-icons-png.flaticon.com/256/14699/14699686.png',
+			'https://cdn-icons-png.flaticon.com/256/14699/14699678.png',
+			'https://cdn-icons-png.flaticon.com/256/14699/14699692.png',
+			'https://cdn-icons-png.flaticon.com/256/14699/14699684.png',
+			'https://cdn-icons-png.flaticon.com/256/14699/14699695.png',
+			'https://cdn-icons-png.flaticon.com/256/15054/15054885.png',
+			'https://cdn-icons-png.flaticon.com/256/8548/8548875.png',
+			'https://cdn-icons-png.flaticon.com/256/14477/14477421.png',
+			'https://cdn-icons-png.flaticon.com/256/15135/15135842.png',
+		],
+	},
+}
 // You can use the data returned by these functions as needed.
 
 ///=========================
 ///Next js - index.js comunicator
 document.addEventListener('DOMContentLoaded', () => {
 	console.log('DOMContentLoaded')
+	//// dev initial data
+	// initImageListData = NextJsFakeData?.data?.images?.flatMap((item) => [item, item])
+	// originInitData = NextJsFakeData
+	// initGame()
 	initSound()
 
 	const onMessageListener = (event) => {
 		if (event?.data?.messageType === 'NEXT_JS_MESSAGE') {
 			console.log('index js log: ', event?.data)
-			initImageListData = event?.data?.data?.imageList?.map((item) => item?.img)
+			//// Next js init data here
+			originInitData = event?.data
+			initImageListData = originInitData?.data?.images?.flatMap((item) => [item, item])
 			initGame()
 		}
 	}
@@ -41,28 +73,30 @@ const emojis = [
 	'🍕',
 	'🍔',
 	'🍔',
-	// '🍖',
-	// '🍖',
-	// '🍧',
-	// '🍧',
-	// '🍩',
-	// '🍩',
-	// '🎄',
-	// '🎄',
-	// '🎃',
-	// '🎃',
-	// '💎',
-	// '💎',
-	// '⏰',
-	// '⏰',
-	// '🚀',
-	// '🚀',
+	'🍖',
+	'🍖',
+	'🍧',
+	'🍧',
+	'🍩',
+	'🍩',
+	'🎄',
+	'🎄',
+	'🎃',
+	'🎃',
+	'💎',
+	'💎',
+	'⏰',
+	'⏰',
+	'🚀',
+	'🚀',
 ]
 
 const initGame = () => {
 	let ImageListData = initImageListData?.length > 0 ? initImageListData : emojis
+
 	gameElement.innerHTML = ''
 	document.querySelector('#reset-btn').addEventListener('click', restartGame)
+	initGridTemplateColums() // grid columns
 
 	let shuf_images = ImageListData.toSorted(() => {
 		//create a random number from 0 to 1.
@@ -73,21 +107,23 @@ const initGame = () => {
 	return ImageListData.map((_, i) => {
 		let card = document.createElement('div')
 		let cardInner = document.createElement('div')
-		let cardFront = document.createElement('div')
-		let cardBack = document.createElement('div')
+		let cardFront = document.createElement('img')
+		let cardBack = document.createElement('img')
 
 		card.className = 'card'
 		card.classList.add('card--foo')
 		cardInner.className = 'card--inner'
 		cardFront.className = 'card--front'
 		cardBack.className = 'card--back'
+		cardBack.setAttribute('src', shuf_images[i])
+		cardBack.setAttribute('alt', 'img-card')
 
 		card.appendChild(cardInner)
 		cardInner.appendChild(cardFront)
 		cardInner.appendChild(cardBack)
 
-		cardFront.innerHTML = '🎈'
-		cardBack.innerHTML = shuf_images[i]
+		cardFront.setAttribute('src', originInitData?.data?.logo)
+		cardFront.setAttribute('alt', 'logo-img')
 
 		card.setAttribute('id', 'card_no.' + i)
 
@@ -211,4 +247,8 @@ const initSound = () => {
 	selectCardElSound = document.getElementById('select-card-sound')
 }
 
-// initGame()
+const initGridTemplateColums = () => {
+	document.getElementById('flip-card-game').style.gridTemplateColumns = `repeat(${
+		originInitData?.col ?? 5
+	}, min(60px))`
+}
