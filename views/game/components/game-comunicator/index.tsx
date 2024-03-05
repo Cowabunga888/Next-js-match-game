@@ -1,4 +1,4 @@
-import { Button, Modal } from '@mantine/core'
+import { Box, Button, LoadingOverlay, Modal } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import React, { useEffect, useMemo, useState } from 'react'
 
@@ -28,10 +28,13 @@ interface IMESSAGE {
 
 function GameComunicator({ children, frameId }: Readonly<IGameComunicator>) {
 	const [opened, { open, close }] = useDisclosure(false)
+	const [isLoading, setIsLoading] = useState(true)
+
 	const [result, setResult] = useState<string>('')
 
 	const data: IMESSAGE = useMemo(() => {
 		return {
+			messageType: 'NEXT_JS_MESSAGE',
 			data: {
 				col: 5,
 				row: 4,
@@ -60,6 +63,7 @@ function GameComunicator({ children, frameId }: Readonly<IGameComunicator>) {
 	}, [])
 
 	const onMessageListener = (event: any) => {
+		console.log(event)
 		if (event?.data?.messageType === 'INDEX_JS_MESSAGE') {
 			console.log('Next js log: ', event?.data?.data?.message)
 			setResult(event?.data?.data?.message)
@@ -67,13 +71,28 @@ function GameComunicator({ children, frameId }: Readonly<IGameComunicator>) {
 		}
 	}
 
-	// const sendMessage = (data: any) => {
-	// 	const iframe = document.getElementById(frameId) as HTMLIFrameElement
-	// 	iframe?.contentWindow?.postMessage(data, window.location.origin)
-	// }
+	const sendMessage = (data: any) => {
+		const iframe = document.getElementById(frameId) as HTMLIFrameElement
+
+		switch (frameId) {
+			case 'match-game-v1':
+				iframe?.contentWindow?.postMessage(data, 'https://match-game-basic.web.app')
+				break
+			case 'match-game-v2':
+				iframe?.contentWindow?.postMessage(data, 'https://match-game-bg-basic.web.app')
+				break
+			default:
+				break
+		}
+		// iframe?.contentWindow?.postMessage(data, window.location.origin)
+	}
 
 	useEffect(() => {
-		localStorage.setItem('gameData', JSON.stringify(data))
+		document.getElementById(frameId)?.addEventListener('load', function () {
+			setIsLoading(false)
+			open()
+		})
+
 		window.addEventListener('message', onMessageListener, false)
 
 		return () => {
@@ -83,12 +102,21 @@ function GameComunicator({ children, frameId }: Readonly<IGameComunicator>) {
 	}, [])
 
 	return (
-		<>
+		<Box pos="relative">
+			{isLoading && (
+				<LoadingOverlay
+					loaderProps={{ color: 'lime' }}
+					visible={true}
+					zIndex={1000}
+					overlayProps={{ radius: 'sm', blur: 2 }}
+				/>
+			)}
+
 			{children}
 
 			<Modal
 				opened={opened}
-				onClose={()=>{}}
+				onClose={() => {}}
 				centered
 				withCloseButton={false}
 				overlayProps={{
@@ -97,13 +125,38 @@ function GameComunicator({ children, frameId }: Readonly<IGameComunicator>) {
 				}}
 			>
 				<div className="w-full h-[300px] border border-dashed flex flex-col items-center justify-center">
-					<div className='text-lg text-gray-600 py-2'>{result}</div>
-					<Button className="" onClick={close} color="lime" variant="outline">
-						Confirm
-					</Button>
+					{result !== '' && (
+						<>
+							<div className="text-lg text-gray-600 py-2">{result}</div>
+							<Button
+								className=""
+								onClick={() => {
+									setResult('')
+									close()
+								}}
+								color="lime"
+								variant="outline"
+							>
+								Confirm
+							</Button>
+						</>
+					)}
+					{result === '' && (
+						<Button
+							className=""
+							onClick={() => {
+								sendMessage(data)
+								close()
+							}}
+							color="lime"
+							variant="outline"
+						>
+							Start Game
+						</Button>
+					)}
 				</div>
 			</Modal>
-		</>
+		</Box>
 	)
 }
 

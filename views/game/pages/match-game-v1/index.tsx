@@ -9,7 +9,8 @@ function MatchGamePageV1() {
 			<div className="relative bg-gray-100 w-screen h-screen">
 				<iframe
 					title="match-game-v1"
-					src="/sw-match-game-v1/index.html"
+					// src="/sw-match-game-v1/index.html"
+					src="https://match-game-basic.web.app/"
 					id={frameId}
 					className="w-full h-full"
 				/>

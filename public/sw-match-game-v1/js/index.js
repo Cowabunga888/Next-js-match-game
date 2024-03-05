@@ -46,26 +46,28 @@ let GameFakeData = {
 document.addEventListener('DOMContentLoaded', () => {
 	console.log('DOMContentLoaded')
 
-	const storageData = JSON.parse(localStorage.getItem('gameData'))
-	if (storageData) {
-		originInitData = storageData
-		initImageListData = originInitData?.data?.images?.flatMap((item) => [item, item])
-	} else {
-		//// dev initial data
-		originInitData = GameFakeData
-		initImageListData = GameFakeData?.data?.images?.flatMap((item) => [item, item])
-	}
+	//// dev initial data
+	// originInitData = GameFakeData
+	// initImageListData = GameFakeData?.data?.images?.flatMap((item) => [item, item])
 
-	initSound()
-	initGame()
+	// initSound()
+	// initGame()
 
 	// set backsound mp3
-	document.querySelector('#game-back-sound')?.play()
+	// document.querySelector('#game-back-sound')?.play()
 
 	const onMessageListener = (event) => {
 		if (event?.data?.messageType === 'NEXT_JS_MESSAGE') {
 			console.log('index js log: ', event?.data)
 			//// Next js init data here
+			originInitData = event.data
+			initImageListData = originInitData?.data?.images?.flatMap((item) => [item, item])
+
+			initSound()
+			initGame()
+
+			// set backsound mp3
+			// document.querySelector('#game-back-sound')?.play()
 		}
 	}
 
@@ -73,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function sendMessage(message) {
-	return window.parent.postMessage(message)
+	return window.parent.postMessage(message, '*')
 }
 ///==========================
 let timerInterval
@@ -271,6 +273,17 @@ const initSound = () => {
 			backsoundElSound?.play()
 		}
 	})
+
+	document.addEventListener(
+		'click',
+		() => {
+			if (backsoundElSound.paused) {
+				backsoundElSound.play()
+				soundToggle.innerHTML = `<i class="ri-volume-up-fill"></i>`
+			}
+		},
+		{ once: true }
+	)
 }
 
 const initGridTemplateColums = () => {
