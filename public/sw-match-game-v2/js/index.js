@@ -8,8 +8,6 @@ let originInitData = null
 let initImageListData = null
 let selectCardElSound = null
 let backsoundElSound = null
-const confettiSound = './assets/sound/confetties_sound.mp3'
-const selectCardSound = './assets/sound/select_sound.mp3'
 
 let GameFakeData = {
 	// 3x2 => 03 img | 3x4 => 06 img
@@ -56,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	// initGame()
 
 	// set backsound mp3
-	document.querySelector('#game-back-sound')?.play()
+	// document.querySelector('#game-back-sound')?.play()
 
 	const onMessageListener = (event) => {
 		if (event?.data?.messageType === 'NEXT_JS_MESSAGE') {
@@ -69,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			initGame()
 
 			// set backsound mp3
-			document.querySelector('#game-back-sound')?.play()
+			// document.querySelector('#game-back-sound')?.play()
 		}
 	}
 
@@ -77,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function sendMessage(message) {
-	return window.parent.postMessage(message)
+	return window.parent.postMessage(message, '*')
 }
 ///==========================
 let timerInterval
@@ -201,6 +199,7 @@ const onWinning = () => {
 	confettiSoundPlay()
 	setTimeout(() => {
 		// alert('You Win')
+		console.log(winningContent)
 		sendMessage(winningContent)
 	}, 500)
 }
@@ -277,6 +276,17 @@ const initSound = () => {
 			backsoundElSound?.play()
 		}
 	})
+
+	document.addEventListener(
+		'click',
+		() => {
+			if (backsoundElSound.paused) {
+				backsoundElSound.play()
+				soundToggle.innerHTML = `<i class="ri-volume-up-fill"></i>`
+			}
+		},
+		{ once: true }
+	)
 }
 
 const initGridTemplateColums = () => {
