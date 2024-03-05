@@ -73,5 +73,18 @@ h2 {
     border: 1px solid #FFFFFF;
 
     background: no-repeat center;
-    background-image: url("../assets/img/cat.png");
+    /* background-image: url("../assets/img/cat.png"); */
+}
+
+#backsound-toggle{
+    font-size: 25px;
+    color: #FFFFFF;
+
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    i{
+        cursor: pointer;
+    }
 }

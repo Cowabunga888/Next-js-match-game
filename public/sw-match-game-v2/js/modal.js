@@ -2,7 +2,7 @@ const winningModalCotent = ()=> ({
   messageType: 'INDEX_JS_MESSAGE',
   modalType: 'WIN',
   data: {
-    message: 'You win!!!'
+    message: 'You win ╰(*°▽°*)╯'
   }
 })
 const losingModalCotent = ()=>({

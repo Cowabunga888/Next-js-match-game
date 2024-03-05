@@ -1,7 +1,7 @@
 'use client'
 
 import { APP_ROUTER } from '@/config'
-import SelectGameCard from '@/views/game/components/select-game-card'
+import SelectGameCard from '@/views/game/components/select-game-container'
 
 function GamePageView() {
 	const gameList = [

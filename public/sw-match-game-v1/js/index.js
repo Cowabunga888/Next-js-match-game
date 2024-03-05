@@ -7,19 +7,24 @@ const losingContent = losingModalCotent()
 let originInitData = null
 let initImageListData = null
 let selectCardElSound = null
-const confettiSound = './assets/sound/confetties_sound.mp3'
-const selectCardSound = './assets/sound/select_sound.mp3'
+let backsoundElSound = null
 
-let NextJsFakeData = {
-	// 3x2: 03 url | 3x4: 06 url
-	// 4x4: 08 url | 4x3: 06 url | 4x5: 10 url
-	// 5x4: 10 url | 5x6: 15 url
-	// 6x5: 15 url
+let GameFakeData = {
+	// 3x2 => 03 img | 3x4 => 06 img
+	// 4x4 => 08 img | 4x3 => 06 img | 4x5 => 10 img
+	// 5x4 => 10 img | 5x6 => 15 img
+	// 6x5 => 15 img
 	data: {
-		col: 5,
-		row: 4,
+		col: 4,
+		row: 5,
 		cel: 20,
 		logo: 'https://i.postimg.cc/V64z86jz/logo.png',
+		background: 'https://cdn-icons-png.flaticon.com/256/14699/14699677.png',
+		sounds: {
+			confettiSound: './assets/sound/confetties_sound.mp3',
+			selectCardSound: './assets/sound/select_sound.mp3',
+			backSound: './assets/sound/game_backsound.mp3',
+		},
 		images: [
 			'https://cdn-icons-png.flaticon.com/256/14699/14699677.png',
 			'https://cdn-icons-png.flaticon.com/256/14699/14699686.png',
@@ -40,19 +45,27 @@ let NextJsFakeData = {
 ///Next js - index.js comunicator
 document.addEventListener('DOMContentLoaded', () => {
 	console.log('DOMContentLoaded')
-	//// dev initial data
-	// initImageListData = NextJsFakeData?.data?.images?.flatMap((item) => [item, item])
-	// originInitData = NextJsFakeData
-	// initGame()
+
+	const storageData = JSON.parse(localStorage.getItem('gameData'))
+	if (storageData) {
+		originInitData = storageData
+		initImageListData = originInitData?.data?.images?.flatMap((item) => [item, item])
+	} else {
+		//// dev initial data
+		originInitData = GameFakeData
+		initImageListData = GameFakeData?.data?.images?.flatMap((item) => [item, item])
+	}
+
 	initSound()
+	initGame()
+
+	// set backsound mp3
+	document.querySelector('#game-back-sound')?.play()
 
 	const onMessageListener = (event) => {
 		if (event?.data?.messageType === 'NEXT_JS_MESSAGE') {
 			console.log('index js log: ', event?.data)
 			//// Next js init data here
-			originInitData = event?.data
-			initImageListData = originInitData?.data?.images?.flatMap((item) => [item, item])
-			initGame()
 		}
 	}
 
@@ -240,15 +253,28 @@ const initTimer = (defaultMinutes) => {
 
 const initSound = () => {
 	document.getElementById('sound-container').innerHTML = `
-	<audio src="${confettiSound}" id="confetti-sound" type="audio/mpeg" ></audio>
-	<audio src="${selectCardSound}" id="select-card-sound" type="audio/mpeg" ></audio>
+	<audio src="${originInitData?.data?.sounds?.confettiSound}" id="confetti-sound" type="audio/mpeg" ></audio>
+	<audio src="${originInitData?.data?.sounds?.selectCardSound}" id="select-card-sound" type="audio/mpeg" ></audio>
+	<audio src="${originInitData?.data?.sounds?.backSound}" id="game-back-sound" type="audio/mpeg" loop autoplay></audio>
 	`
 
 	selectCardElSound = document.getElementById('select-card-sound')
+	backsoundElSound = document.querySelector('#game-back-sound')
+
+	const soundToggle = document.getElementById('backsound-toggle')
+	soundToggle.addEventListener('click', () => {
+		if (soundToggle.innerHTML.trim() === '<i class="ri-volume-up-fill"></i>') {
+			soundToggle.innerHTML = `<i class="ri-volume-mute-fill"></i>`
+			backsoundElSound?.pause()
+		} else {
+			soundToggle.innerHTML = `<i class="ri-volume-up-fill"></i>`
+			backsoundElSound?.play()
+		}
+	})
 }
 
 const initGridTemplateColums = () => {
 	document.getElementById('flip-card-game').style.gridTemplateColumns = `repeat(${
-		originInitData?.col ?? 5
+		originInitData?.data?.col ?? 5
 	}, min(60px))`
 }
