@@ -1,5 +1,7 @@
-import Link from 'next/link'
+'use client'
+
 import { JetBrains_Mono } from 'next/font/google'
+import { useRouter } from 'next/navigation'
 
 const JetBrains = JetBrains_Mono({
 	subsets: ['latin'],
@@ -7,6 +9,7 @@ const JetBrains = JetBrains_Mono({
 })
 
 export default function NotFound() {
+	const router = useRouter()
 	return (
 		<div
 			className={
@@ -19,15 +22,19 @@ export default function NotFound() {
 					<span className="text-[#F6BC70] text-6xl block">
 						<span>4 0 4</span>
 					</span>
-					<p className="text-[#656565] max-w-[450px] text-xl mx-auto px-3">Sorry, We couldn&#39;t find what you are looking for!</p>
+					<p className="text-[#656565] max-w-[450px] text-xl mx-auto px-3">
+						Sorry, We couldn&#39;t find what you are looking for!
+					</p>
 				</div>
 			</div>
-			<Link
-				href="/game"
+			<button
+				onClick={() => {
+					router.back()
+				}}
 				className="text-white text-center bg-[#7390D0] p-3 mx-auto w-[120px] rounded-md hover:shadow-lg"
 			>
 				Go back{' '}
-			</Link>
+			</button>
 		</div>
 	)
 }
