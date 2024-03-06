@@ -5,11 +5,7 @@ interface IGameLayout {
 }
 
 function GameLayout({ children }: Readonly<IGameLayout>) {
-	return (
-		<div className='w-screen h-screen bg-[url("/assets/game/images/404_bg.webp")] bg-center bg-no-repeat bg-cover'>
-			{children}
-		</div>
-	)
+	return <div className="w-screen h-screen">{children}</div>
 }
 
 export default GameLayout

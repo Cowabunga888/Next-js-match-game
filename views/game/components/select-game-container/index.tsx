@@ -10,7 +10,7 @@ interface ISelectGameContainerProps {
 
 const SelectGameContainer = ({ image, title, description, url }: ISelectGameContainerProps) => {
 	return (
-		<Link href={url} className="game-card-selection">
+		<Link href={url} className="game-card-selection border">
 			<FallbackImage
 				className="object-cover m-auto w-20 h-20 rounded-md flex-shrink-0"
 				src={image}
