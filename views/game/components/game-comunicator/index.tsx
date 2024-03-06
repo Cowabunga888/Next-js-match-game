@@ -36,7 +36,7 @@ function GameComunicator({ children, frameId }: Readonly<IGameComunicator>) {
 		return {
 			messageType: 'NEXT_JS_MESSAGE',
 			data: {
-				col: 5,
+				col: 4,
 				row: 4,
 				cel: 20,
 				logo: 'https://i.postimg.cc/V64z86jz/logo.png',
@@ -49,12 +49,12 @@ function GameComunicator({ children, frameId }: Readonly<IGameComunicator>) {
 				images: [
 					'https://cdn-icons-png.flaticon.com/256/14699/14699677.png',
 					'https://cdn-icons-png.flaticon.com/256/14699/14699686.png',
-					// 'https://cdn-icons-png.flaticon.com/256/14699/14699678.png',
-					// 'https://cdn-icons-png.flaticon.com/256/14699/14699692.png',
-					// 'https://cdn-icons-png.flaticon.com/256/14699/14699684.png',
-					// 'https://cdn-icons-png.flaticon.com/256/14699/14699695.png',
-					// 'https://cdn-icons-png.flaticon.com/256/15054/15054885.png',
-					// 'https://cdn-icons-png.flaticon.com/256/8548/8548875.png',
+					'https://cdn-icons-png.flaticon.com/256/14699/14699678.png',
+					'https://cdn-icons-png.flaticon.com/256/14699/14699692.png',
+					'https://cdn-icons-png.flaticon.com/256/14699/14699684.png',
+					'https://cdn-icons-png.flaticon.com/256/14699/14699695.png',
+					'https://cdn-icons-png.flaticon.com/256/15054/15054885.png',
+					'https://cdn-icons-png.flaticon.com/256/8548/8548875.png',
 					// 'https://cdn-icons-png.flaticon.com/256/14477/14477421.png',
 					// 'https://cdn-icons-png.flaticon.com/256/15135/15135842.png',
 				],
