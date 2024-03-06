@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, Select, Switch, TextInput } from '@mantine/core'
+import { Button, Indicator, Select, Switch, TextInput } from '@mantine/core'
 import { RiAncientGateFill, RiAtLine, RiEye2Line } from '@remixicon/react'
 import { useRouter } from 'next/navigation'
 
@@ -28,14 +28,16 @@ function LandingPage() {
 
 			<div className="landing-content">
 				<div className="landing-content__block flex gap-3">
-					<Button
-						color="#1A3F55"
-						onClick={() => {
-							router.push('/game')
-						}}
-					>
-						Started
-					</Button>
+					<Indicator processing color="red" withBorder size={12}>
+						<Button
+							color="#1A3F55"
+							onClick={() => {
+								router.push('/game')
+							}}
+						>
+							Started
+						</Button>
+					</Indicator>
 					<Button variant="outline" color="gray" classNames={{ label: 'text-[#1A3F55]' }}>
 						Button
 					</Button>
@@ -49,7 +51,7 @@ function LandingPage() {
 					<Select placeholder="Pick value" data={['React', 'Angular', 'Vue', 'Svelte']} />
 				</div>
 
-				<div className="landing-content__block !h-[500px] flex flex-col gap-10 !items-start !justify-start !col-span-5 p-4">
+				<div className="landing-content__block !h-[500px] flex flex-col gap-10 !items-start !justify-start !col-span-3 p-4">
 					<span className="font-semibold text-xl text-[#1A3F55]">Sign in</span>
 					<TextInput
 						className="w-full"
