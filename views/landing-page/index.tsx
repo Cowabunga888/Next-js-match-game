@@ -39,7 +39,7 @@ function LandingPage() {
 					<Select placeholder="Pick value" data={['React', 'Angular', 'Vue', 'Svelte']} />
 				</div>
 
-				<div className="landing-content__block !h-[500px] flex flex-col gap-10 !items-start !justify-start !col-span-3">
+				<div className="landing-content__block !h-[500px] flex flex-col gap-10 !items-start !justify-start !col-span-4">
 					<span className="font-semibold text-xl text-[#1A3F55]">Sign in</span>
 					<TextInput
 						className="w-full"
