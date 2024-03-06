@@ -1,11 +1,11 @@
 'use client'
 
 import { Button, Indicator, Select, Switch, TextInput } from '@mantine/core'
-import { RiAncientGateFill, RiAtLine, RiEye2Line } from '@remixicon/react'
+import { RiAtLine, RiEye2Line } from '@remixicon/react'
 import { useRouter } from 'next/navigation'
 
-import './style/style.css'
 import AppHeader from '../components/app-header'
+import './style/style.css'
 
 function LandingPage() {
 	const router = useRouter()
