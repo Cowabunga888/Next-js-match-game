@@ -24,11 +24,11 @@ function GamePageView() {
 		},
 		{
 			id: '03',
-			image: '',
-			title: 'Not found game ❌',
+			image: 'https://img001.prntscr.com/file/img001/AmKZKaDfRVuhLSvgB5Ou0A.png',
+			title: 'Spin wheel 🎡',
 			description:
 				'consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
-			url: '/not-found',
+			url: APP_ROUTER.game.spinWheel,
 		},
 	]
 

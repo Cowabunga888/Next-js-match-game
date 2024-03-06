@@ -8,5 +8,6 @@ export default Object.freeze({
     path: '/game',
     matchGameV1: '/game/' + GAME_NAME.MATCH_GAME_V1,
     matchGameV2: '/game/' + GAME_NAME.MATCH_GAME_V2,
+    spinWheel: '/game/' + GAME_NAME.SPIN_WHEEL,
   }
 })
