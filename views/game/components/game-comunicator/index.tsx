@@ -9,6 +9,7 @@ interface IGameComunicator {
 }
 
 function GameComunicator({ children, frameId, frameData }: Readonly<IGameComunicator>) {
+	console.log(frameId)
 	const [opened, { open, close }] = useDisclosure(false)
 	const [isLoading, setIsLoading] = useState(true)
 
@@ -34,6 +35,9 @@ function GameComunicator({ children, frameId, frameData }: Readonly<IGameComunic
 				break
 			case 'spin-wheel-basic':
 				iframe?.contentWindow?.postMessage(frameData, 'https://spin-wheel-e1e07.web.app')
+				break
+			case 'scratch-card-basic':
+				iframe?.contentWindow?.postMessage(frameData, 'https://scratch-card-699dd.web.app')
 				break
 			default:
 				break
