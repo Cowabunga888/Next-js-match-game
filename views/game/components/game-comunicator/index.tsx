@@ -9,7 +9,7 @@ interface IGameComunicator {
 }
 
 function GameComunicator({ children, frameId, frameData }: Readonly<IGameComunicator>) {
-	console.log(frameId)
+
 	const [opened, { open, close }] = useDisclosure(false)
 	const [isLoading, setIsLoading] = useState(true)
 
@@ -38,6 +38,9 @@ function GameComunicator({ children, frameId, frameData }: Readonly<IGameComunic
 				break
 			case 'scratch-card-basic':
 				iframe?.contentWindow?.postMessage(frameData, 'https://scratch-card-699dd.web.app')
+				break
+			case 'jackpot-basic':
+				iframe?.contentWindow?.postMessage(frameData, 'https://jackpot-eafa5.web.app')
 				break
 			default:
 				break
