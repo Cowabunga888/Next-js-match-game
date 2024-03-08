@@ -1,6 +1,7 @@
 'use client'
 
 import NotFound from '@/app/not-found'
+import JackpotGamePage from '@/views/game/pages/jackpot-game'
 import MatchGamePageV1 from '@/views/game/pages/match-game-v1'
 import MatchGamePageV2 from '@/views/game/pages/match-game-v2'
 import ScratchCardGamePage from '@/views/game/pages/scratch-card-game'
@@ -20,6 +21,8 @@ function GamePage() {
 			return <SpinWheelGamePage />
 		case GAME_NAME.SCRATCH_CARD:
 			return <ScratchCardGamePage />
+		case GAME_NAME.JACKPOT:
+			return <JackpotGamePage />
 		default:
 			return <NotFound />
 	}
