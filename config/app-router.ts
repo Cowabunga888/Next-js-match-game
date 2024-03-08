@@ -9,5 +9,6 @@ export default Object.freeze({
     matchGameV1: '/game/' + GAME_NAME.MATCH_GAME_V1,
     matchGameV2: '/game/' + GAME_NAME.MATCH_GAME_V2,
     spinWheel: '/game/' + GAME_NAME.SPIN_WHEEL,
+    scratchCard: '/game/' + GAME_NAME.SCRATCH_CARD,
   }
 })
