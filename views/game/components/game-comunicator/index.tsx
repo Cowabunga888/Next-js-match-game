@@ -9,7 +9,7 @@ interface IGameComunicator {
 }
 
 function GameComunicator({ children, frameId, frameData }: Readonly<IGameComunicator>) {
-	console.log(frameId)
+
 	const [opened, { open, close }] = useDisclosure(false)
 	const [isLoading, setIsLoading] = useState(true)
 
