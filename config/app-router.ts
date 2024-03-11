@@ -11,5 +11,6 @@ export default Object.freeze({
     spinWheel: '/game/' + GAME_NAME.SPIN_WHEEL,
     scratchCard: '/game/' + GAME_NAME.SCRATCH_CARD,
     jackpot: '/game/' + GAME_NAME.JACKPOT,
+    luckyBox: '/game/' + GAME_NAME.LUCKY_BOX,
   }
 })

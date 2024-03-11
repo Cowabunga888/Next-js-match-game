@@ -2,6 +2,7 @@
 
 import NotFound from '@/app/not-found'
 import JackpotGamePage from '@/views/game/pages/jackpot-game'
+import LuckyBoxGamePage from '@/views/game/pages/lucky-box-game'
 import MatchGamePageV1 from '@/views/game/pages/match-game-v1'
 import MatchGamePageV2 from '@/views/game/pages/match-game-v2'
 import ScratchCardGamePage from '@/views/game/pages/scratch-card-game'
@@ -23,6 +24,8 @@ function GamePage() {
 			return <ScratchCardGamePage />
 		case GAME_NAME.JACKPOT:
 			return <JackpotGamePage />
+		case GAME_NAME.LUCKY_BOX:
+			return <LuckyBoxGamePage />
 		default:
 			return <NotFound />
 	}
