@@ -4,4 +4,5 @@ export enum GAME_NAME {
   SPIN_WHEEL = 'spin-wheel',
   SCRATCH_CARD = 'scratch-card',
   JACKPOT = 'jackpot',
+  LUCKY_BOX = 'lucky-box',
 }

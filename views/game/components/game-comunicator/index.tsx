@@ -42,6 +42,9 @@ function GameComunicator({ children, frameId, frameData }: Readonly<IGameComunic
 			case 'jackpot-basic':
 				iframe?.contentWindow?.postMessage(frameData, 'https://jackpot-eafa5.web.app')
 				break
+			case 'lucky-box-basic':
+				iframe?.contentWindow?.postMessage(frameData, 'https://lucky-box-458f3.web.app')
+				break
 			default:
 				break
 		}
