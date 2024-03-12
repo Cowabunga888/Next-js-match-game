@@ -1,6 +1,5 @@
 'use client'
 
-import { APP_ROUTER } from '@/config'
 import SelectGameCard from '@/views/game/components/select-game-container'
 import AppHeader from '../components/app-header'
 import { GameSelection } from './data'

@@ -4,12 +4,11 @@ import React, { useEffect, useMemo, useState } from 'react'
 
 interface IGameComunicator {
 	children?: React.ReactNode
-	frameId: string,
+	frameId: string
 	frameData: any
 }
 
 function GameComunicator({ children, frameId, frameData }: Readonly<IGameComunicator>) {
-
 	const [opened, { open, close }] = useDisclosure(false)
 	const [isLoading, setIsLoading] = useState(true)
 
@@ -44,6 +43,9 @@ function GameComunicator({ children, frameId, frameData }: Readonly<IGameComunic
 				break
 			case 'lucky-box-basic':
 				iframe?.contentWindow?.postMessage(frameData, 'https://lucky-box-458f3.web.app')
+				break
+			case 'brand-quiz-basic':
+				iframe?.contentWindow?.postMessage(frameData, 'https://brand-quiz-bb3bf.web.app')
 				break
 			default:
 				break
@@ -107,12 +109,7 @@ function GameComunicator({ children, frameId, frameData }: Readonly<IGameComunic
 						</>
 					)}
 					{result === '' && (
-						<Button
-							className=""
-							onClick={sendMessage}
-							color="lime"
-							variant="outline"
-						>
+						<Button className="" onClick={sendMessage} color="lime" variant="outline">
 							Start Game
 						</Button>
 					)}

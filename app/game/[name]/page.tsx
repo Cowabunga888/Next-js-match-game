@@ -1,6 +1,7 @@
 'use client'
 
 import NotFound from '@/app/not-found'
+import BrandQuizGamePage from '@/views/game/pages/brand-quiz-game'
 import JackpotGamePage from '@/views/game/pages/jackpot-game'
 import LuckyBoxGamePage from '@/views/game/pages/lucky-box-game'
 import MatchGamePageV1 from '@/views/game/pages/match-game-v1'
@@ -26,6 +27,8 @@ function GamePage() {
 			return <JackpotGamePage />
 		case GAME_NAME.LUCKY_BOX:
 			return <LuckyBoxGamePage />
+		case GAME_NAME.BRAND_QUIZ:
+			return <BrandQuizGamePage />
 		default:
 			return <NotFound />
 	}
