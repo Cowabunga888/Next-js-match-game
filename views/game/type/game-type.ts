@@ -5,4 +5,5 @@ export enum GAME_NAME {
   SCRATCH_CARD = 'scratch-card',
   JACKPOT = 'jackpot',
   LUCKY_BOX = 'lucky-box',
+  BRAND_QUIZ = 'brand-quiz',
 }
