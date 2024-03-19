@@ -3,6 +3,7 @@
 import NotFound from '@/app/not-found'
 import BrandQuizGamePage from '@/views/game/pages/brand-quiz-game'
 import JackpotGamePage from '@/views/game/pages/jackpot-game'
+import JumpJumpGamePage from '@/views/game/pages/jump-game'
 import LuckyBoxGamePage from '@/views/game/pages/lucky-box-game'
 import MatchGamePageV1 from '@/views/game/pages/match-game-v1'
 import MatchGamePageV2 from '@/views/game/pages/match-game-v2'
@@ -29,6 +30,8 @@ function GamePage() {
 			return <LuckyBoxGamePage />
 		case GAME_NAME.BRAND_QUIZ:
 			return <BrandQuizGamePage />
+		case GAME_NAME.JUMP:
+			return <JumpJumpGamePage />
 		default:
 			return <NotFound />
 	}

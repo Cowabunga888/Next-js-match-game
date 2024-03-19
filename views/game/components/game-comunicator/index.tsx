@@ -1,6 +1,6 @@
 import { Box, Button, LoadingOverlay, Modal } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 interface IGameComunicator {
 	children?: React.ReactNode

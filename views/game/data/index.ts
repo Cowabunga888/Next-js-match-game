@@ -57,4 +57,12 @@ export const GameSelection = [
       'consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
     url: APP_ROUTER.game.brandQuiz,
   },
+  {
+    id: '08',
+    image: 'https://img001.prntscr.com/file/img001/6TA_Etk5Sf2OizLLY6yFwA.png',
+    title: 'Jump Jump 👟',
+    description:
+      'consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+    url: APP_ROUTER.game.jump,
+  },
 ]
