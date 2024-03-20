@@ -13,5 +13,7 @@ export default Object.freeze({
     jackpot: '/game/' + GAME_NAME.JACKPOT,
     luckyBox: '/game/' + GAME_NAME.LUCKY_BOX,
     brandQuiz: '/game/' + GAME_NAME.BRAND_QUIZ,
+    jump: '/game/' + GAME_NAME.JUMP,
+    character: '/game/' + GAME_NAME.CHARACTER,
   }
 })

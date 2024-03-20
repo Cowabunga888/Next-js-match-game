@@ -1,0 +1,11 @@
+.game-container {
+	@apply relative w-screen h-screen flex flex-col gap-2 items-center justify-center;
+}
+
+.character-container {
+	@apply w-[400px] flex items-center justify-center relative border border-red-400 border-dashed rounded-md;
+}
+
+.bottom-nav {
+	@apply flex gap-5;
+}

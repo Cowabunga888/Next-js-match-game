@@ -6,4 +6,6 @@ export enum GAME_NAME {
   JACKPOT = 'jackpot',
   LUCKY_BOX = 'lucky-box',
   BRAND_QUIZ = 'brand-quiz',
+  JUMP = 'jump',
+  CHARACTER = 'character',
 }
