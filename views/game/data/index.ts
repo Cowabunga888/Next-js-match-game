@@ -65,4 +65,12 @@ export const GameSelection = [
       'consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
     url: APP_ROUTER.game.jump,
   },
+  {
+    id: '09',
+    image: 'https://img001.prntscr.com/file/img001/g6oKxEe4Ti-vMtpLQoXJ7Q.png',
+    title: 'Character 👑',
+    description:
+      'consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+    url: APP_ROUTER.game.character,
+  },
 ]
