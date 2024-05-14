@@ -1,7 +1,7 @@
 import { FallbackImage } from '@/views/components/fallback-image'
-import { useCharacterClothes } from '../../providers'
 import ClothesSegment from './clothes-segment'
 import { RiArrowLeftDoubleLine } from '@remixicon/react'
+import { useCharacterClothes } from '../../providers'
 
 interface ICharacterClothesScene {
 	hanldeChangeScene: (scene: string) => void
