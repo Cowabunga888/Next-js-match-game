@@ -1,25 +1,29 @@
-import React, { createContext, useContext, useMemo, useReducer } from 'react'
-import { characterStateHanlder } from './actions/character-clothes-action'
+import React, { Dispatch, createContext, useContext, useMemo, useReducer } from 'react'
 import { characterClothesState } from './initial-state'
-import { ICharacterClothes } from './type'
+import { characterStateHanlder } from './actions/character-clothes-action'
+import { ICharacterClothes, ICharacterClothesActions } from './type'
 
-const initState: ICharacterClothes = characterClothesState
-const CharacterClothesContext = createContext<any>(initState)
-
-interface ICharacterClothesProvider {
-	children: React.ReactNode
+type TClothesReducer = {
+	clothes: ICharacterClothes
+	setClothes: Dispatch<ICharacterClothesActions>
 }
 
+const CharacterClothesContext = createContext<TClothesReducer>({clothes: characterClothesState, setClothes: ()=>{}})
+
+// hook
 const useCharacterClothes = () => {
 	const context = useContext(CharacterClothesContext)
 	return context
 }
 
-function CharacterClothesProvider({ children }: Readonly<ICharacterClothesProvider>) {
-	const [clothes, setClothes] = useReducer<any>(characterStateHanlder, initState)
-	const contextValue: any = useMemo(() => ({ clothes, setClothes }), [clothes, setClothes])
+function CharacterClothesProvider({ children }: Readonly<{ children: React.ReactNode }>) {
+	const [clothes, setClothes] = useReducer(characterStateHanlder, characterClothesState)
 
-	return <CharacterClothesContext.Provider value={contextValue}>{children}</CharacterClothesContext.Provider>
+	const value: TClothesReducer = useMemo(() => {
+		return { clothes, setClothes }
+	}, [clothes, setClothes])
+
+	return <CharacterClothesContext.Provider value={value}>{children}</CharacterClothesContext.Provider>
 }
 
 export { CharacterClothesProvider, useCharacterClothes }

@@ -1,7 +1,7 @@
 import { FallbackImage } from '@/views/components/fallback-image'
 import React from 'react'
-import { useCharacterClothes } from '../../providers'
 import { Button } from '@mantine/core'
+import { useCharacterClothes } from '../../providers'
 
 interface ICharacterStartScene {
 	hanldeChangeScene: (scene: string) => void

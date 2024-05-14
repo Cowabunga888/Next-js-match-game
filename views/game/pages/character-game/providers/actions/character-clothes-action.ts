@@ -1,33 +1,18 @@
 import { ECharacterClothesActions, ICharacterClothes, ICharacterClothesActions } from "../type"
 
 export const characterStateHanlder = (state: ICharacterClothes, action: ICharacterClothesActions) => {
-	switch (action.type) {
-		case ECharacterClothesActions.UPDATE_SHIRT:
-			return {
-				...state,
-				costume: {
-					...state.costume,
-					shirt: { url: action.payload.url },
-				},
-			}
-		case ECharacterClothesActions.UPDATE_HAT:
-			return {
-				...state,
-				costume: {
-					...state.costume,
-					hat: { url: action.payload.url },
-				},
-			}
-		case ECharacterClothesActions.UPDATE_WING:
-			return {
-				...state,
-				costume: {
-					...state.costume,
-					wing: { url: action.payload.url },
-				},
-			}
-
-		default:
-			return state
-	}
+  const { type, payload } = action
+  switch (type) {
+    case ECharacterClothesActions.UPDATE_SHIRT:
+      state.costume.shirt.url = payload.url ?? ''
+      return { ...state }
+    case ECharacterClothesActions.UPDATE_HAT:
+      state.costume.hat.url = payload.url ?? ''
+      return { ...state }
+    case ECharacterClothesActions.UPDATE_WING:
+      state.costume.wing.url = payload.url ?? ''
+      return { ...state }
+    default:
+      return { ...state }
+  }
 }

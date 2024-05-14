@@ -1,7 +1,7 @@
 import { SegmentedControl } from '@mantine/core'
 import { useState } from 'react'
-import { ECharacterClothesActions } from '../../../providers/type'
 import ClothesSegmentPanel from './chothes-panel'
+import { ECharacterClothesActions } from '../../../providers/type'
 
 interface IClothesSegment {
 	costume: {
@@ -18,17 +18,17 @@ function ClothesSegment({ costume }: Readonly<IClothesSegment>) {
 		{
 			value: 'shirt',
 			innerText: 'Shirt',
-			panel: <ClothesSegmentPanel actionType={ECharacterClothesActions.UPDATE_SHIRT} urls={costume.shirt.url} />,
+			panel: <ClothesSegmentPanel key={'shirt'} actionType={ECharacterClothesActions.UPDATE_SHIRT} urls={costume.shirt.url} />,
 		},
 		{
 			value: 'hat',
 			innerText: 'Hat',
-			panel: <ClothesSegmentPanel actionType={ECharacterClothesActions.UPDATE_HAT} urls={costume.hat.url} />,
+			panel: <ClothesSegmentPanel key={'hat'} actionType={ECharacterClothesActions.UPDATE_HAT} urls={costume.hat.url} />,
 		},
 		{
 			value: 'wing',
 			innerText: 'Wing',
-			panel: <ClothesSegmentPanel actionType={ECharacterClothesActions.UPDATE_WING} urls={costume.wing.url} />,
+			panel: <ClothesSegmentPanel key={'wing'} actionType={ECharacterClothesActions.UPDATE_WING} urls={costume.wing.url} />,
 		},
 	]
 

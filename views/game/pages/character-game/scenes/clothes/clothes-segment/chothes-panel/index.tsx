@@ -3,8 +3,8 @@ import { useCharacterClothes } from '../../../../providers'
 import { ECharacterClothesActions } from '../../../../providers/type'
 
 interface IClothesSegmentPanel {
-	urls: {origin: string, thumb: string}[],
-  actionType: ECharacterClothesActions
+	urls: { origin: string; thumb: string }[]
+	actionType: ECharacterClothesActions
 }
 
 function ClothesSegmentPanel({ urls, actionType }: Readonly<IClothesSegmentPanel>) {
